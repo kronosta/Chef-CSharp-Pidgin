@@ -98,6 +98,10 @@ Methods:
   Essentially it checks that the test exists, the compilation was successful, and there were no uncaught exceptions.
 
 ### Class `Test`
+When running a test, the method `TestMain(TextWriter)` in the class `Program` will be run, and must exist. No other parameters are allowed, and the method must return a TReturn
+(the type argument in this classes' enclosing constructed generic class). To pass other data, use the `Input` property. Each test is run in a separate collectible `AssemblyLoadContext` that
+is immediately discarded after the test finishes, so they don't bloat your memory with assemblies.
+
 Fields:
 - `public TestSuite<TReturn> LatestTestSuite`: The TestSuite<TReturn> that invoked this test.
 - `public Compilation Compilation`: The Compilation that compiled this test.
